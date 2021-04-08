@@ -1,3 +1,6 @@
+import datetime
+
+
 
 def dic_temporadas(consulta):
     if len(consulta) != 0:
@@ -27,5 +30,56 @@ def dic_temporadas(consulta):
         print('LA CONSULTA VIENE VACIA')
         return {}
 
+
+
+def lista_episodios(consulta, name_serie, n_temporada):
+    
+    list_episodio = []
+    if len(consulta) != 0:
+        
+        for item in consulta:
+
+            if item['series'] == name_serie and int(item['season']) == int(n_temporada):
+                list_aux = [item['episode'],item['title'],item["episode_id"]]
+                list_episodio.append(list_aux)
+
+        return list_episodio
+
+    
+    #si la consulta viene vacia enviaremos un mensaje por consola
+    else:
+        print('LA CONSULTA VIENE VACIA')
+        return ['paso x aqui, soy un error']
+
+
+def list_info_cap(consulta):
+    #list_webeo = ["esto deberia verso como un eror"]
+    info_cap = []
+    if len(consulta) != 0:
+        print('\n\n\n')
+        print(consulta)
+        dic_consulta = consulta[0]
+        info_cap.append(dic_consulta["title"])
+        info_cap.append(dic_consulta["season"])
+        info_cap.append(dic_consulta["episode"])
+        #info_cap.append(dic_consulta["air_date"])
+                 
+        d = datetime.datetime.strptime(dic_consulta["air_date"], "%Y-%m-%dT%H:%M:%S.%fZ")
+        new_format = "d-m-Y"
+        d.strftime(new_format)
+        info_cap.append(d)
+
+
+        info_cap.append(dic_consulta["characters"])
+
+        return info_cap
+        #return list_webeo
+
+
+    
+    #si la consulta viene vacia enviaremos un mensaje por consola
+    else:
+        print('LA CONSULTA VIENE VACIA')
+        return ['paso x aqui, soy un error']
 
 

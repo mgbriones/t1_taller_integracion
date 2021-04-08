@@ -8,8 +8,22 @@
 </head>
 <body>
     <b1>ENTRANDO A LA PAGINA, OJALA TODO RESULTE</b1>
-
+    
+    <p>SERIE: {{name_serie}} </p>
     <p>TEMPORADA: {{numero_temporada}} </p>
+
+    <b1> Aqui se listan los capitulos de la temporada de la serie elegida</b1>    
+
+    <ul>
+        {%for item in matriz_episodios%}
+              
+            <li> <a href="/capitulo/{{item.2}}"> {{item.0}}-{{item.1}} </a> </li>        
+
+     
+
+        {% endfor %}
+       
+    </ul>
     
 
 </body>

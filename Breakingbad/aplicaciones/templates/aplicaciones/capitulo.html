@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <b1> Aqui se mostraran todos las caracteristicas de un capitulo en particular</b1>
+
+    <p>id capitulo: {{id_capitulo}} </p>
+
+    <p>info capitulo: {{matriz_info}} </p>
+
+    <p> Titulo: {{matriz_info.0}} </p>
+    <p> Temporada: {{matriz_info.1}} </p>
+    <p> Capitulo: {{matriz_info.2}} </p>
+    <p> Fecha de estreno: {{matriz_info.3}} </p>
+    <p> Personajes: (Nota: hay q cambiar el link al que redirigen) </p>
+
+    {%for item in matriz_info.4%}
+              
+            <li> <a href="/personaje/{{item}}"> {{item}} </a> </li>        
+
+     
+
+    {% endfor %}
+
+
+    
+
+</body>
+</html>

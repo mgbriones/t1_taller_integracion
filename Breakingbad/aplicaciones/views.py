@@ -6,7 +6,7 @@ from django.template import Context, Template
 
 
 #modulos creados
-from aplicaciones.funciones_temporada import dic_temporadas
+from aplicaciones.funciones_temporada import dic_temporadas, lista_episodios, list_info_cap
 
 
 
@@ -32,9 +32,9 @@ def api(url):
     if response.status_code == 200:
         content = response.json()
         #print("\n\n@@&&========================\nFUNCIONO\n\n")
-        print('\n\n@@@@@@@@@@@@@@@@@@@@@@@')
-        print(content)
-        print(content[0])
+        #print('\n\n@@@@@@@@@@@@@@@@@@@@@@@')
+        #print(content)
+        #print(content[0])
         return content
 
 
@@ -89,15 +89,117 @@ def temporadas(request):
 
     return HttpResponse(documento)
 
-def index(request, n_temporada):
+def index(request,name_serie, n_temporada):
     #se carga el template
-    #doc_externo = open("C:/Users/Matias Briones/Desktop/t1_taller_integracion/Breakingbad/aplicaciones/templates/aplicaciones/temporadas.html")
     doc_externo = open("../Breakingbad/aplicaciones/templates/aplicaciones/index.html")
     plt = Template(doc_externo.read()) #se lee el template
     doc_externo.close()
 
 
-    ctx = Context({ "numero_temporada":n_temporada})
+    #ahora necesitamos la funcion que haga la peticion y entrege una lista
+    url = 'https://tarea-1-breaking-bad.herokuapp.com/api/episodes'
+    algo = api(url)
+
+    matriz_episodios = lista_episodios(algo, name_serie, n_temporada) #aqui va una funcion, lol
+
+
+    ctx = Context({ "name_serie":name_serie,"numero_temporada":n_temporada, "matriz_episodios":matriz_episodios})
     documento = plt.render(ctx)
 
     return HttpResponse(documento)
+
+
+def capitulo(request, id_capitulo):
+    #se carga el template
+    doc_externo = open("../Breakingbad/aplicaciones/templates/aplicaciones/capitulo.html")
+    plt = Template(doc_externo.read()) #se lee el template
+    doc_externo.close()
+
+
+    #ahora necesitamos la funcion que haga la peticion y entrege una lista
+    url = 'https://tarea-1-breaking-bad.herokuapp.com/api/episodes/'+str(id_capitulo)
+    algo = api(url)
+
+    matriz_info = list_info_cap(algo)
+
+    ctx = Context({"matriz_info":matriz_info})
+    documento = plt.render(ctx)
+
+    return HttpResponse(documento)
+
+
+def personaje(request, name_personaje):
+    #se carga el template
+    doc_externo = open("../Breakingbad/aplicaciones/templates/aplicaciones/personaje.html")
+    plt = Template(doc_externo.read()) #se lee el template
+    doc_externo.close()
+
+
+    #ahora necesitamos la funcion que haga la peticion y entrege una lista
+    #url = 'https://tarea-1-breaking-bad.herokuapp.com/api/episodes/'+str(id_capitulo)
+    #algo = api(url)
+
+    #matriz_info = list_info_cap(algo)
+    resultado_consulta = {}
+    #for id in range(109,116):   '''Este for lo uso para entrebar, pq el while demora mucho'''
+
+
+    '''
+    id = 1
+    while True:   #esta linea  puede que tenga que borrarla
+        url = 'https://tarea-1-breaking-bad.herokuapp.com/api/characters/'+str(id)
+        consulta = api(url)
+        if len(consulta)!= 0:
+            dic_consulta = consulta[0]
+
+            #print("\n\n\n@@@@@@@@@@@@@@@")
+            #print(dic_consulta)
+            #print("\n\n\n@@@@@@@@@@@@@@@")
+            #print(dic_consulta["name"])
+            #print(name_personaje)
+            #print(dic_consulta["name"] == name_personaje)
+        
+            if dic_consulta["name"] == name_personaje:
+                resultado_consulta = dic_consulta
+                break
+            
+            id += 1
+    '''
+    id = 0
+    while True:   #esta linea  puede que tenga que borrarla
+        url = "https://tarea-1-breaking-bad.herokuapp.com/api/characters?limit=10&offset="+str(id)
+        consulta = api(url)  # esto es una lista
+        if len(consulta)!= 0:
+            for fulano in consulta:
+                dic_consulta = fulano
+
+        
+            
+                if dic_consulta["name"] == name_personaje:
+                    resultado_consulta = dic_consulta
+                    break
+            
+            id += 10
+        
+        else: #la lista esta vacia
+            break
+
+
+
+    ctx = Context({"mensaje":"TODO BIEN AUN", "name_personaje":name_personaje,
+     "resultado_consulta":resultado_consulta,
+     "name":resultado_consulta["name"],
+     "occupation":resultado_consulta["occupation"],
+     "img":resultado_consulta["img"],
+     "status":resultado_consulta["status"],
+     "nickname":resultado_consulta["nickname"],
+     "appearance":resultado_consulta["appearance"],
+     "portrayed":resultado_consulta["portrayed"],
+     "category":resultado_consulta["category"],
+     "better_call_saul_appearance":resultado_consulta["better_call_saul_appearance"],
+     
+     })
+    documento = plt.render(ctx)
+
+    return HttpResponse(documento)
+

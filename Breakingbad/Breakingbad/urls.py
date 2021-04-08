@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from aplicaciones.views import prueba, temporadas, index
+from aplicaciones.views import prueba, temporadas, index, capitulo, personaje
 
 
 urlpatterns = [
@@ -23,5 +23,7 @@ urlpatterns = [
     path('',include('aplicaciones.urls')),
     path('prueba/', prueba),
     path('temporadas/', temporadas),
-    path('temporadas/index/<n_temporada>', index),    
+    path('temporadas/index/<name_serie>/<n_temporada>', index),    
+    path('capitulo/<id_capitulo>', capitulo),
+    path('personaje/<name_personaje>', personaje),
 ]

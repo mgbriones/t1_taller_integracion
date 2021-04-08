@@ -7,22 +7,7 @@
     <title>TEMPORADAS</title>
 </head>
 <body>
-    <b1> Aqui estaran las temporadas de BB y BCS</b1>
-    <b1> Logre que funcione el template, algo es algo</b1>
-    <p>la busqueda arrojo:</p>
-    <p>{{papa}}</p>
-    <p>{{n_temporadas}}</p>
-    
-    <p>{{n_temporadas.items}}</p>
-
-    {% for key, value in n_temporadas.items %}
-        
-        {{ n }} = {{ value }}
-        
-    {% endfor %}
-
-    <p>{{matriz}}</p>
-    <p>{{matriz.1.0}}</p>
+    <b1> Aqui se listan las tempordas de cada serie, en este caso, BREAKING BAD y BETTER CAL SAUL</b1>    
 
     <ul>
         {%for item in matriz%}
@@ -31,7 +16,7 @@
             {%for name in item%}  
 
                 {% if name != item.0 %}
-                <li> <a href="index/{{name}}"> Temporada {{name}} </a> </li>
+                <li> <a href="index/{{item.0}}/{{name}}"> Temporada {{name}} </a> </li>
 
                 {% endif %}
 
@@ -40,7 +25,6 @@
         {% endfor %}
        
     </ul>
-    <p>hola
-    </p>
+    
 </body>
 </html>
