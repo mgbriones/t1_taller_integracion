@@ -11,6 +11,36 @@
     <b1> Logre que funcione el template, algo es algo</b1>
     <p>la busqueda arrojo:</p>
     <p>{{papa}}</p>
-    <p>{{consulta}}</p>
+    <p>{{n_temporadas}}</p>
+    
+    <p>{{n_temporadas.items}}</p>
+
+    {% for key, value in n_temporadas.items %}
+        
+        {{ n }} = {{ value }}
+        
+    {% endfor %}
+
+    <p>{{matriz}}</p>
+    <p>{{matriz.1.0}}</p>
+
+    <ul>
+        {%for item in matriz%}
+        <p>{{item.0}}</p>
+
+            {%for name in item%}  
+
+                {% if name != item.0 %}
+                <li> <a href="index/{{name}}"> Temporada {{name}} </a> </li>
+
+                {% endif %}
+
+            {% endfor %}
+
+        {% endfor %}
+       
+    </ul>
+    <p>hola
+    </p>
 </body>
 </html>
