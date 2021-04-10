@@ -47,9 +47,10 @@ def temporadas(request):
 
     #se carga el template
     #doc_externo = open("C:/Users/Matias Briones/Desktop/t1_taller_integracion/Breakingbad/aplicaciones/templates/aplicaciones/temporadas.html")
-    doc_externo = open("../Breakingbad/aplicaciones/templates/aplicaciones/temporadas.html","r")
-    plt = Template(doc_externo.read()) #se lee el template
-    doc_externo.close()
+    
+    #doc_externo = open("../Breakingbad/aplicaciones/templates/aplicaciones/temporadas.html","r") #agregue ,'r'
+    #plt = Template(doc_externo.read()) #se lee el template
+    #doc_externo.close()
 
     #ctx = Context()
 
@@ -87,7 +88,8 @@ def temporadas(request):
     ctx = Context({'matriz':matriz,'n_temporadas':dic_cant_temporadas,"consulta": algo, "papa":"padre"})
     documento = plt.render(ctx)
 
-    return HttpResponse(documento)
+    #return HttpResponse(documento)
+    return render(request, "temporadas.html", {'matriz':matriz,'n_temporadas':dic_cant_temporadas,"consulta": algo, "papa":"padre"})
 
 def index(request,name_serie, n_temporada):
     #se carga el template
