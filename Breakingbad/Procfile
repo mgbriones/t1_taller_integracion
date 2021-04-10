@@ -1,1 +1,1 @@
-web: gunicorn breakingbad.wsgi --log-file -
+web: gunicorn Breakingbad.wsgi --log-file -
