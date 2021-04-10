@@ -89,7 +89,7 @@ def temporadas(request):
     #documento = plt.render(ctx)
 
     #return HttpResponse(documento)
-    return render(request, "temporadas.html", {'matriz':matriz,'n_temporadas':dic_cant_temporadas,"consulta": algo, "papa":"padre"})
+    return render(request, "aplicaciones/temporadas.html", {'matriz':matriz,'n_temporadas':dic_cant_temporadas,"consulta": algo, "papa":"padre"})
 
 def index(request,name_serie, n_temporada):
     #se carga el template
