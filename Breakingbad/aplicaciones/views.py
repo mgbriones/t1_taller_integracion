@@ -140,51 +140,20 @@ def personaje(request, name_personaje):
     #algo = api(url)
 
     #matriz_info = list_info_cap(algo)
-    resultado_consulta = {}
-    #for id in range(109,116):   '''Este for lo uso para entrebar, pq el while demora mucho'''
 
+    
+    
 
-    '''
-    id = 1
-    while True:   #esta linea  puede que tenga que borrarla
-        url = 'https://tarea-1-breaking-bad.herokuapp.com/api/characters/'+str(id)
-        consulta = api(url)
-        if len(consulta)!= 0:
-            dic_consulta = consulta[0]
+    nombre_a_buscar = name_personaje.replace(" ","+")
+    url_2 = "https://tarea-1-breaking-bad.herokuapp.com/api/characters?name="+nombre_a_buscar
 
-            #print("\n\n\n@@@@@@@@@@@@@@@")
-            #print(dic_consulta)
-            #print("\n\n\n@@@@@@@@@@@@@@@")
-            #print(dic_consulta["name"])
-            #print(name_personaje)
-            #print(dic_consulta["name"] == name_personaje)
-        
-            if dic_consulta["name"] == name_personaje:
-                resultado_consulta = dic_consulta
-                break
-            
-            id += 1
-    '''
-    id = 0
-    while True:   #esta linea  puede que tenga que borrarla
-        url = "https://tarea-1-breaking-bad.herokuapp.com/api/characters?limit=10&offset="+str(id)
-        consulta = api(url)  # esto es una lista
-        if len(consulta)!= 0:
-            for fulano in consulta:
-                dic_consulta = fulano
+    consulta_2 = api(url_2)
+    resultado_consulta = consulta_2[0]
 
-        
-            
-                if dic_consulta["name"] == name_personaje:
-                    resultado_consulta = dic_consulta
-                    break
-            
-            id += 10
-        
-        else: #la lista esta vacia
-            break
-
-
+    print("\n\n\n\n@@@@@@@@@2")
+    print(resultado_consulta)
+    print("\n\n\n@@@@@@@@@@@@@@@@@@@")
+    print(consulta_2)
 
     ctx = Context({"mensaje":"TODO BIEN AUN", "name_personaje":name_personaje,
      "resultado_consulta":resultado_consulta,

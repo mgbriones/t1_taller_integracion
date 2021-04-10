@@ -9,7 +9,7 @@
 <body>
     <br>
     <b> RESULTADO DE LAS BUSQUEDA</b>
-    
+
     <form action="/busqueda" method="GET">
         Buscar: <input type="text" name="busq">
         <input type="submit" value="Buscar">
@@ -25,9 +25,16 @@
     <br>
 
 
+    {% for per in info %}
 
+    <a href="/personaje/{{per.0}}"><li> <b> {{per.0}} </b></li> </a>
 
+    {% endfor %}
 
+    <br>
+    <br>
+
+    <!--
     {% for per in info %}
     <img src= {{per.8}} height="250" width = "260">
      <b><li> Nombre:</b>  {{per.0}} </li>      
@@ -65,19 +72,11 @@
     <br>
     <br>
     <br>
- 
-    
-
-
-
-
-
-
-
-
 
 
     {% endfor %} 
+    -->
+
 
 </body>
 </html>
