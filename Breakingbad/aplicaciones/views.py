@@ -93,9 +93,9 @@ def temporadas(request):
 
 def index(request,name_serie, n_temporada):
     #se carga el template
-    doc_externo = open("../Breakingbad/aplicaciones/templates/aplicaciones/index.html")
-    plt = Template(doc_externo.read()) #se lee el template
-    doc_externo.close()
+    #doc_externo = open("../Breakingbad/aplicaciones/templates/aplicaciones/index.html")
+    #plt = Template(doc_externo.read()) #se lee el template
+    #doc_externo.close()
 
 
     #ahora necesitamos la funcion que haga la peticion y entrege una lista
@@ -106,16 +106,17 @@ def index(request,name_serie, n_temporada):
 
 
     ctx = Context({ "name_serie":name_serie,"numero_temporada":n_temporada, "matriz_episodios":matriz_episodios})
-    documento = plt.render(ctx)
+    #documento = plt.render(ctx)
 
-    return HttpResponse(documento)
+    #return HttpResponse(documento)
+    return render(request,"aplicaciones/index.html", { "name_serie":name_serie,"numero_temporada":n_temporada, "matriz_episodios":matriz_episodios})
 
 
 def capitulo(request, id_capitulo):
     #se carga el template
-    doc_externo = open("../Breakingbad/aplicaciones/templates/aplicaciones/capitulo.html")
-    plt = Template(doc_externo.read()) #se lee el template
-    doc_externo.close()
+    #doc_externo = open("../Breakingbad/aplicaciones/templates/aplicaciones/capitulo.html")
+    #plt = Template(doc_externo.read()) #se lee el template
+    #doc_externo.close()
 
 
     #ahora necesitamos la funcion que haga la peticion y entrege una lista
@@ -125,16 +126,17 @@ def capitulo(request, id_capitulo):
     matriz_info = list_info_cap(algo)
 
     ctx = Context({"matriz_info":matriz_info})
-    documento = plt.render(ctx)
+    #documento = plt.render(ctx)
 
-    return HttpResponse(documento)
+    #return HttpResponse(documento)
+    return render(request, "aplicaciones/capitulo.html", {"matriz_info":matriz_info})
 
 
 def personaje(request, name_personaje):
     #se carga el template
-    doc_externo = open("../Breakingbad/aplicaciones/templates/aplicaciones/personaje.html")
-    plt = Template(doc_externo.read()) #se lee el template
-    doc_externo.close()
+    #doc_externo = open("../Breakingbad/aplicaciones/templates/aplicaciones/personaje.html")
+    #plt = Template(doc_externo.read()) #se lee el template
+    #doc_externo.close()
 
   
 
@@ -159,17 +161,30 @@ def personaje(request, name_personaje):
      "better_call_saul_appearance":resultado_consulta["better_call_saul_appearance"],
      
      })
-    documento = plt.render(ctx)
+    #documento = plt.render(ctx)
 
-    return HttpResponse(documento)
+    #return HttpResponse(documento)
+    return render(request, "aplicaciones/personaje.html",{"mensaje":"TODO BIEN AUN", "name_personaje":name_personaje,
+     "resultado_consulta":resultado_consulta,
+     "name":resultado_consulta["name"],
+     "occupation":resultado_consulta["occupation"],
+     "img":resultado_consulta["img"],
+     "status":resultado_consulta["status"],
+     "nickname":resultado_consulta["nickname"],
+     "appearance":resultado_consulta["appearance"],
+     "portrayed":resultado_consulta["portrayed"],
+     "category":resultado_consulta["category"],
+     "better_call_saul_appearance":resultado_consulta["better_call_saul_appearance"],
+     
+     } )
 
 
 
 def busqueda(request):
      #se carga el template
-    doc_externo = open("../Breakingbad/aplicaciones/templates/aplicaciones/busqueda.html")
-    plt = Template(doc_externo.read()) #se lee el template
-    doc_externo.close()
+    #doc_externo = open("../Breakingbad/aplicaciones/templates/aplicaciones/busqueda.html")
+    #plt = Template(doc_externo.read()) #se lee el template
+    #doc_externo.close()
 
     mensaje = request.GET["busq"]
 
@@ -195,6 +210,7 @@ def busqueda(request):
     
 
     ctx = Context({"info":matriz_info})
-    documento = plt.render(ctx)
+    #documento = plt.render(ctx)
 
-    return HttpResponse(documento)
+    #return HttpResponse(documento)
+    return render(request, "aplicaciones/busqueda.html", {"info":matriz_info})
