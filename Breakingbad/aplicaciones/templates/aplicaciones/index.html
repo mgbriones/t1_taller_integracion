@@ -4,15 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Index</title>
 </head>
 <body>
-    <b1>ENTRANDO A LA PAGINA, OJALA TODO RESULTE</b1>
-    
-    <p>SERIE: {{name_serie}} </p>
-    <p>TEMPORADA: {{numero_temporada}} </p>
 
-    <b1> Aqui se listan los capitulos de la temporada de la serie elegida</b1>    
+    <form action="/busqueda" method="GET">
+        Buscar: <input type="text" name="busq">
+        <input type="submit" value="Buscar">
+
+    </form>
+
+    <br>
+    <a href="/"> <b>HOME</b>  </a>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <p><b>SERIE: </b> {{name_serie}} </p>
+    <p><b>TEMPORADA: </b> {{numero_temporada}} </p>
+
 
     <ul>
         {%for item in matriz_episodios%}
@@ -24,6 +36,8 @@
         {% endfor %}
        
     </ul>
+    
+
     
 
 </body>

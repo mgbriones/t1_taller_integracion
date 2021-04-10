@@ -7,21 +7,40 @@
     <title>Document</title>
 </head>
 <body>
-    <b1> Aqui deberia poder verse la info de un pesonaje selecionado:</b1>
-    <b>  {{name_personaje}}</b>
+
+
+    <form action="/busqueda" method="GET">
+        Buscar: <input type="text" name="busq">
+        <input type="submit" value="Buscar">
+
+    </form>
+
+
     <br>
-    <p>  Nombre: {{name}}</p>
-    
-    <p>  Ocupacion: {{occupation}}</p>
-    
-    
-    
-    <p> Estado: {{status}}</p>
-    
-    <p> Apodo: {{nickname}}</p>
-    
-    <p> Capitulos de Breaking Bad donde aparece:  {{appearance}}</p>
-    <b> Temporadas: 
+    <a href="/"> <b>HOME</b>  </a>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <br>
+
+    <img src= {{img}} height="250" width = "260">
+      <br>
+    <p> <b>Nombre:</b>  {{name}}</p>    
+    <p> <b>Ocupacion:</b> 
+    {% for item in occupation%}
+
+    <b1> {{item}}, </b1>  
+    {% endfor %}
+    </p> 
+
+    <p> <b>Estado:</b>  {{status}}</p>    
+    <p> <b>Apodo:</b>  {{nickname}}</p>
+
+  
+    <b> <b>Temporadas en Breaking Bad: </b>
     {%for item in appearance%}
               
             <a href="/index/Breaking%20Bad/{{item}}"> {{item}} </a>  
@@ -31,13 +50,11 @@
     {% endfor %}
     </b>
 
-    <p>  Actor: {{portrayed}}</p>
+    <p> <b>Actor: </b> {{portrayed}}</p>    
+    <p> <b>Serie: </b> {{category}}</p>    
     
-    <p>  Serie: {{category}}</p>
-    
-    <p>  Apariciones en Better Call Saul: {{better_call_saul_appearance}}</p>
 
-    <b> Temporadas: 
+    <b> <b>Temporadas en Better call Saul: </b> 
         {%for item in better_call_saul_appearance%}
                   
                 <a href="/index/Better%20Call%20Saul/{{item}}"> {{item}} </a>     
@@ -46,8 +63,8 @@
         {% endfor %}
         </b>
 
-    <p>  LINK: de la imagen: {{img}}</p>
-    <img src= {{img}}>
+   
+   
     
 
 

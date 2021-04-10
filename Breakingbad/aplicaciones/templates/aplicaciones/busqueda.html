@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Busqueda</title>
 </head>
 <body>
-    <b> AQUI DEBERIA MOSTRAR EL RESULTADO DE LAS BUSQUEDAS</b>
+    <br>
+    <b> RESULTADO DE LAS BUSQUEDA</b>
+    
+    <form action="/busqueda" method="GET">
+        Buscar: <input type="text" name="busq">
+        <input type="submit" value="Buscar">
+
+    </form>
 
     <br>
+    <a href="/"> <b>HOME</b>  </a>
 
-
-
-
-
-    {{ info.1 }}
-
-
-    <a href="/"> Volver lista de Temporadas  </a>
-
+    <br>
+    <br>
+    <br>
     <br>
 
 
@@ -27,32 +29,44 @@
 
 
     {% for per in info %}
+    <img src= {{per.8}} height="250" width = "260">
+     <b><li> Nombre:</b>  {{per.0}} </li>      
+    <li><b>  Ocupacion: </b>    
 
-    <p>  Nombre: {{per.0}}</p>        
-    <p>  Ocupacion: {{per.1}}</p>     
-    <p> Estado: {{per.2}}</p>        
-    <p> Apodo: {{per.3}}</p>        
-    <p> Capitulos de Breaking Bad donde aparece:  {{per.4}}</p>
-    <b> Temporadas: 
+    {%for item in per.1%}
+            
+    <b1> {{item}}, </b1>       
+
+    {% endfor %}
+    </li>
+    <li> Estado: {{per.2}}</li>        
+    <li> Apodo: {{per.3}}</li>        
+  
+    <li><b> Temporadas de Breaking Bad donde aparece: </b>
     {%for item in per.4%}
             
             <a href="/index/Breaking%20Bad/{{item}}"> {{item}} </a>          
 
     {% endfor %}
-    </b>
-    <p>  Actor: {{per.5}}</p>        
-    <p>  Serie: {{per.6}}</p>        
-    <p>  Apariciones en Better Call Saul: {{per.7}}</p>
-    <b> Temporadas: 
+    </li>
+    <li>  Actor: {{per.5}}</li>        
+    <li>  Serie: {{per.6}}</li>        
+   
+    <li><b> Temporadas de Better Call Saul donde aparece : </b>
         {%for item in per.7%}
                 
                 <a href="/index/Better%20Call%20Saul/{{item}}"> {{item}} </a>    
 
         {% endfor %}
-        </b>
-
-    <p>  LINK: de la imagen: {{per.8}}</p>
-    <img src= {{per.8}}>
+        </li>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+ 
+    
 
 
 

@@ -7,17 +7,29 @@
     <title>Document</title>
 </head>
 <body>
-    <b1> Aqui se mostraran todos las caracteristicas de un capitulo en particular</b1>
 
-    <p>id capitulo: {{id_capitulo}} </p>
+    <form action="/busqueda" method="GET">
+        Buscar: <input type="text" name="busq">
+        <input type="submit" value="Buscar">
 
-    <p>info capitulo: {{matriz_info}} </p>
+    </form>
 
-    <p> Titulo: {{matriz_info.0}} </p>
-    <p> Temporada: {{matriz_info.1}} </p>
-    <p> Capitulo: {{matriz_info.2}} </p>
-    <p> Fecha de estreno: {{matriz_info.3}} </p>
-    <p> Personajes: (Nota: hay q cambiar el link al que redirigen) </p>
+    <br>
+    <a href="/"> <b>HOME</b>  </a>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    
+
+    
+
+    <p> <b>Titulo: </b> {{matriz_info.0}} </p>
+    <p> <b>Temporada: </b> {{matriz_info.1}} </p>
+    <p> <b>Capitulo:</b> {{matriz_info.2}} </p>
+    <p> <b>Fecha de estreno:</b> {{matriz_info.3}} </p>
+    <p> <b>Personajes:</b>  </p>
 
     {%for item in matriz_info.4%}
               

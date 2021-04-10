@@ -7,7 +7,14 @@
     <title>TEMPORADAS</title>
 </head>
 <body>
-    <b1> Aqui se listan las tempordas de cada serie, en este caso, BREAKING BAD y BETTER CAL SAUL</b1>    
+    
+    <form action="/busqueda" method="GET">
+        Buscar: <input type="text" name="busq">
+        <input type="submit" value="Buscar">
+
+    </form>
+
+
 
     <ul>
         {%for item in matriz%}
@@ -28,11 +35,7 @@
 
 
 
-    <form action="/busqueda" method="GET">
-        Buscar: <input type="text" name="busq">
-        <input type="submit" value="Buscar">
-
-    </form>
+    
     
 </body>
 </html>
