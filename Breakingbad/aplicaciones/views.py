@@ -47,7 +47,7 @@ def temporadas(request):
 
     #se carga el template
     #doc_externo = open("C:/Users/Matias Briones/Desktop/t1_taller_integracion/Breakingbad/aplicaciones/templates/aplicaciones/temporadas.html")
-    doc_externo = open("../Breakingbad/aplicaciones/templates/aplicaciones/temporadas.html")
+    doc_externo = open("../Breakingbad/aplicaciones/templates/aplicaciones/temporadas.html","r")
     plt = Template(doc_externo.read()) #se lee el template
     doc_externo.close()
 
