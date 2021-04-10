@@ -6,7 +6,7 @@ from django.template import Context, Template
 
 
 #modulos creados
-from aplicaciones.funciones_temporada import dic_temporadas, lista_episodios, list_info_cap
+from aplicaciones.funciones_temporada import dic_temporadas, lista_episodios, list_info_cap, matriz_personajes_buscados
 
 
 
@@ -203,3 +203,38 @@ def personaje(request, name_personaje):
 
     return HttpResponse(documento)
 
+
+
+def busqueda(request):
+     #se carga el template
+    doc_externo = open("../Breakingbad/aplicaciones/templates/aplicaciones/busqueda.html")
+    plt = Template(doc_externo.read()) #se lee el template
+    doc_externo.close()
+
+    mensaje = request.GET["busq"]
+
+    resultado_consulta = []
+
+
+    id = 0
+    while True:   #esta linea  puede que tenga que borrarla
+
+        url = "https://tarea-1-breaking-bad.herokuapp.com/api/characters?name="+str(mensaje)+"&limit=10&offset="+str(id)
+        consulta = api(url)  # esto es una lista
+        if len(consulta)!= 0:
+            #resultado_consulta.append(consulta)
+            resultado_consulta += consulta
+            id += 10
+        
+        else: #la lista esta vacia
+            break
+
+    
+    matriz_info = matriz_personajes_buscados(resultado_consulta)
+
+    
+
+    ctx = Context({"info":matriz_info})
+    documento = plt.render(ctx)
+
+    return HttpResponse(documento)

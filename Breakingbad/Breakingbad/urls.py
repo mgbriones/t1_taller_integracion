@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from aplicaciones.views import prueba, temporadas, index, capitulo, personaje
+from aplicaciones.views import prueba, temporadas, index, capitulo, personaje, busqueda
 
-
+'''
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('aplicaciones.urls')),
@@ -26,4 +26,17 @@ urlpatterns = [
     path('temporadas/index/<name_serie>/<n_temporada>', index),    
     path('capitulo/<id_capitulo>', capitulo),
     path('personaje/<name_personaje>', personaje),
+]
+
+'''
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    #path('',include('aplicaciones.urls')),
+    path('prueba/', prueba),
+    path('', temporadas),
+    path('index/<name_serie>/<n_temporada>', index),    
+    path('capitulo/<id_capitulo>', capitulo),
+    path('personaje/<name_personaje>', personaje),
+    path('busqueda/', busqueda),
 ]

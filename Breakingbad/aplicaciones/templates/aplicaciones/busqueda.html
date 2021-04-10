@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <b> AQUI DEBERIA MOSTRAR EL RESULTADO DE LAS BUSQUEDAS</b>
+
+    <br>
+
+
+
+
+
+    {{ info.1 }}
+
+
+    <a href="/"> Volver lista de Temporadas  </a>
+
+    <br>
+
+
+
+
+
+    {% for per in info %}
+
+    <p>  Nombre: {{per.0}}</p>        
+    <p>  Ocupacion: {{per.1}}</p>     
+    <p> Estado: {{per.2}}</p>        
+    <p> Apodo: {{per.3}}</p>        
+    <p> Capitulos de Breaking Bad donde aparece:  {{per.4}}</p>
+    <b> Temporadas: 
+    {%for item in per.4%}
+            
+            <a href="/index/Breaking%20Bad/{{item}}"> {{item}} </a>          
+
+    {% endfor %}
+    </b>
+    <p>  Actor: {{per.5}}</p>        
+    <p>  Serie: {{per.6}}</p>        
+    <p>  Apariciones en Better Call Saul: {{per.7}}</p>
+    <b> Temporadas: 
+        {%for item in per.7%}
+                
+                <a href="/index/Better%20Call%20Saul/{{item}}"> {{item}} </a>    
+
+        {% endfor %}
+        </b>
+
+    <p>  LINK: de la imagen: {{per.8}}</p>
+    <img src= {{per.8}}>
+
+
+
+
+
+
+
+
+
+
+    {% endfor %} 
+
+</body>
+</html>

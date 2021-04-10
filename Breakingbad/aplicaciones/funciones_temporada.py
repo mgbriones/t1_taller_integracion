@@ -83,3 +83,37 @@ def list_info_cap(consulta):
         return ['paso x aqui, soy un error']
 
 
+def matriz_personajes_buscados(consulta):
+
+
+    matriz_info = []  
+    '''
+    INFO GUARDDA en la matriz EN ORDEN: 
+    "name"
+    "occupation"    
+    "status"
+    "nickname"
+    "appearance"
+    "portrayed"
+    "category"
+    "better_call_saul_appearance"
+    "img"
+    '''
+    for dic_personaje in consulta:
+        list_aux = [
+            dic_personaje["name"],
+            dic_personaje["occupation"],
+            dic_personaje["status"],
+            dic_personaje["nickname"],
+            dic_personaje["appearance"],
+            dic_personaje["portrayed"],
+            dic_personaje["category"],
+            dic_personaje["better_call_saul_appearance"],
+            dic_personaje["img"]            
+        ]
+        matriz_info.append(list_aux)
+    
+    return matriz_info
+
+
+   
