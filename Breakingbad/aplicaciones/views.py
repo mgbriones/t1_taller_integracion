@@ -134,15 +134,7 @@ def personaje(request, name_personaje):
     plt = Template(doc_externo.read()) #se lee el template
     doc_externo.close()
 
-
-    #ahora necesitamos la funcion que haga la peticion y entrege una lista
-    #url = 'https://tarea-1-breaking-bad.herokuapp.com/api/episodes/'+str(id_capitulo)
-    #algo = api(url)
-
-    #matriz_info = list_info_cap(algo)
-
-    
-    
+  
 
     nombre_a_buscar = name_personaje.replace(" ","+")
     url_2 = "https://tarea-1-breaking-bad.herokuapp.com/api/characters?name="+nombre_a_buscar
@@ -150,10 +142,7 @@ def personaje(request, name_personaje):
     consulta_2 = api(url_2)
     resultado_consulta = consulta_2[0]
 
-    print("\n\n\n\n@@@@@@@@@2")
-    print(resultado_consulta)
-    print("\n\n\n@@@@@@@@@@@@@@@@@@@")
-    print(consulta_2)
+
 
     ctx = Context({"mensaje":"TODO BIEN AUN", "name_personaje":name_personaje,
      "resultado_consulta":resultado_consulta,
